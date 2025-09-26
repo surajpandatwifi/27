@@ -96,13 +96,13 @@ const Header = () => {
     <>
       <header 
         ref={headerRef}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out w-full ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out w-full ${
           isScrolled ? 'backdrop-blur-md bg-black/20' : 'bg-transparent'
         }`}
         style={{ zIndex: isMobileMenuOpen ? 30 : 1000 }}
       >
         {/* Subtle gradient fade for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/5 to-transparent pointer-events-none" />
         
         <div className={`container mx-auto py-4 sm:py-6 lg:py-8 transition-all duration-300 ${
           isMobileMenuOpen ? 'opacity-50' : 'opacity-100'
@@ -201,17 +201,17 @@ const Header = () => {
       </header>
 
       {/* Mobile Menu Overlay */}
-      <div className={`fixed inset-0 z-50 lg:hidden transition-all duration-300 ease-out ${
+      <div className={`fixed inset-0 z-50 lg:hidden transition-all duration-250 ease-out ${
         isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
-      }`}>
+      } will-change-transform`}>
         {/* Background Overlay */}
         <div 
-          className="absolute inset-0 bg-black/80 backdrop-blur-md"
+          className="absolute inset-0 bg-black/85"
           onClick={() => setIsMobileMenuOpen(false)}
         />
         
         {/* Mobile Menu Content */}
-        <div className={`absolute top-0 right-0 h-full w-80 max-w-[85vw] bg-black/95 backdrop-blur-xl border-l border-white/10 transform transition-transform duration-300 ease-out z-60 ${
+        <div className={`absolute top-0 right-0 h-full w-80 max-w-[85vw] bg-black/98 border-l border-white/10 transform transition-transform duration-250 ease-out z-60 will-change-transform ${
           isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
         }`}>
           {/* Menu Header */}
@@ -233,18 +233,18 @@ const Header = () => {
                 {item.href.startsWith('#') ? (
                   <button
                     onClick={(e) => handleSmoothScroll(e, item.href)}
-                    className="w-full text-left font-[font2] text-lg text-white uppercase tracking-wide py-3 px-4 rounded-lg transition-all duration-300 hover:bg-white/5 hover:text-[#D3FD50] relative group"
+                    className="w-full text-left font-[font2] text-lg text-white uppercase tracking-wide py-3 px-4 rounded-lg transition-all duration-200 hover:bg-white/5 hover:text-[#D3FD50] relative group will-change-transform"
                   >
                     {item.name}
-                    <span className="absolute bottom-0 left-4 w-0 h-0.5 bg-[#D3FD50] transition-all duration-300 group-hover:w-8" />
+                    <span className="absolute bottom-0 left-4 w-0 h-0.5 bg-[#D3FD50] transition-all duration-200 group-hover:w-8 will-change-transform" />
                   </button>
                 ) : (
                   <Link
                     to={item.href}
-                    className="block font-[font2] text-lg text-white uppercase tracking-wide py-3 px-4 rounded-lg transition-all duration-300 hover:bg-white/5 hover:text-[#D3FD50] relative group"
+                    className="block font-[font2] text-lg text-white uppercase tracking-wide py-3 px-4 rounded-lg transition-all duration-200 hover:bg-white/5 hover:text-[#D3FD50] relative group will-change-transform"
                   >
                     {item.name}
-                    <span className="absolute bottom-0 left-4 w-0 h-0.5 bg-[#D3FD50] transition-all duration-300 group-hover:w-8" />
+                    <span className="absolute bottom-0 left-4 w-0 h-0.5 bg-[#D3FD50] transition-all duration-200 group-hover:w-8 will-change-transform" />
                   </Link>
                 )}
               </div>
@@ -255,7 +255,7 @@ const Header = () => {
               <Link
                 to="/affiliate-program"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block w-full text-center font-[font2] text-sm text-white uppercase tracking-wide px-6 py-3 border border-gray-400 rounded-full transition-all duration-300 hover:bg-[#D3FD50] hover:text-black hover:border-[#D3FD50]"
+                className="block w-full text-center font-[font2] text-sm text-white uppercase tracking-wide px-6 py-3 border border-gray-400 rounded-full transition-all duration-200 hover:bg-[#D3FD50] hover:text-black hover:border-[#D3FD50] will-change-transform"
               >
                 Become an Affiliate
               </Link>

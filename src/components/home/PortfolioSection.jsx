@@ -53,9 +53,9 @@ const VideoCard = ({ video, index, isVisible, isMobile }) => {
           opacity: 1,
           y: 0,
           scale: 1,
-          duration: 0.6,
+          duration: 0.4,
           ease: "power2.out",
-          delay: index * 0.08
+          delay: index * 0.05
         }
       )
     }
@@ -70,7 +70,7 @@ const VideoCard = ({ video, index, isVisible, isMobile }) => {
   return (
     <div 
       ref={cardRef}
-      className="group relative aspect-video video-glass gpu-accelerated cursor-pointer overflow-hidden"
+      className="group relative aspect-video video-glass gpu-accelerated cursor-pointer overflow-hidden will-change-transform"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={handleCardClick}
@@ -84,9 +84,9 @@ const VideoCard = ({ video, index, isVisible, isMobile }) => {
       <img
         src={thumbnailUrl}
         alt={`Portfolio video ${index + 1}`}
-        className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ${
+        className={`absolute inset-0 w-full h-full object-cover transition-all duration-400 ${
           isHovered && isLoaded && !isMobile ? 'opacity-0 scale-105' : 'opacity-100 scale-100'
-        } ${!thumbnailLoaded ? 'blur-sm' : 'blur-0'}`}
+        } ${!thumbnailLoaded ? 'blur-sm' : 'blur-0'} will-change-transform`}
         loading="lazy"
         onLoad={() => setThumbnailLoaded(true)}
       />
@@ -95,18 +95,18 @@ const VideoCard = ({ video, index, isVisible, isMobile }) => {
       <img
         src={`https://img.youtube.com/vi/${video.videoId}/mqdefault.jpg`}
         alt=""
-        className={`absolute inset-0 w-full h-full object-cover blur-md scale-110 transition-opacity duration-300 ${
+        className={`absolute inset-0 w-full h-full object-cover blur-md scale-110 transition-opacity duration-200 ${
           thumbnailLoaded ? 'opacity-0' : 'opacity-100'
-        }`}
+        } will-change-transform`}
         loading="lazy"
       />
 
       {/* YouTube Video (shown on hover for desktop only) */}
       {isVisible && !isMobile && (
         <iframe
-          className={`absolute inset-0 w-full h-full transition-all duration-700 ${
+          className={`absolute inset-0 w-full h-full transition-all duration-400 ${
             isHovered && thumbnailLoaded ? 'opacity-100 scale-105' : 'opacity-0 scale-100'
-          }`}
+          } will-change-transform`}
           src={`https://www.youtube.com/embed/${video.videoId}?autoplay=${isHovered ? 1 : 0}&mute=1&loop=1&playlist=${video.videoId}&controls=1&modestbranding=1&rel=0&showinfo=0`}
           title={`Portfolio video ${index + 1}`}
           frameBorder="0"
@@ -118,23 +118,23 @@ const VideoCard = ({ video, index, isVisible, isMobile }) => {
       )}
 
       {/* Cinematic overlay gradients */}
-      <div className={`absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20 transition-all duration-500 ${
+      <div className={`absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-black/15 transition-all duration-300 ${
         isHovered && !isMobile ? 'opacity-60' : 'opacity-80'
-      }`} />
+      } will-change-transform`} />
 
       {/* Custom Play Button */}
-      <div className={`absolute inset-0 flex items-center justify-center transition-all duration-500 ${
+      <div className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${
         isHovered && !isMobile ? 'opacity-0 scale-90' : 'opacity-100 scale-100'
-      }`}>
-        <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 glass rounded-full flex items-center justify-center group-hover:scale-110 transition-all duration-300 glow-accent">
+      } will-change-transform`}>
+        <div className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 glass rounded-full flex items-center justify-center group-hover:scale-110 transition-all duration-200 glow-accent will-change-transform">
           <div className="w-0 h-0 border-l-[12px] sm:border-l-[16px] lg:border-l-[20px] border-l-white border-y-[8px] sm:border-y-[12px] lg:border-y-[14px] border-y-transparent ml-1 sm:ml-2"></div>
         </div>
       </div>
 
       {/* Cinematic glow effect on hover */}
-      <div className={`absolute inset-0 rounded-lg sm:rounded-xl transition-all duration-500 ${
+      <div className={`absolute inset-0 rounded-lg sm:rounded-xl transition-all duration-300 ${
         isHovered && !isMobile ? 'shadow-2xl shadow-[#D3FD50]/20 scale-105' : 'scale-100'
-      }`} />
+      } will-change-transform`} />
     </div>
   )
 }
